@@ -7,3 +7,6 @@ Improvements:
 * use octree instead of classic array to represent blocks to save memory (no need to split a "subsection" if it contains all blocks of the same type)
 * chunk has dimensions x\*y\*maximum-height. It would be possible to split the chunk along the z-axis and only load the parts that are not completely covered or not empty. 
 * reducing the size of the saved files. At the moment the saved world is made up of several files of quite large size. Each chunk is saved in its own file and is always saved in its entirety without any compression. It would be good to save compressed and only chunks that have been modified by the player. Alternatively, save only the changes made instead of the whole chunk.
+
+
+Textures used: https://texture-packs.com/resourcepack/canvas/
