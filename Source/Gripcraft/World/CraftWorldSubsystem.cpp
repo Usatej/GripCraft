@@ -11,7 +11,6 @@
 
 namespace CraftWorldSubsystemConst
 {
-	constexpr int SPAWN_CHUNKS_PER_TICK = 10;
 	constexpr int APPLY_CHUNK_MESHES_PER_TICK = 2;
 }
 
@@ -81,16 +80,15 @@ TStatId UCraftWorldSubsystem::GetStatId() const
 void UCraftWorldSubsystem::SpawnChunks()
 {
 	TRACE_CPUPROFILER_EVENT_SCOPE(TEXT("UCraftWorldSubsystem::SpawnChunks"))
-	//Spawn limited number of chunks per tick - we dont want to freeze game thread for long time
 	if(!ChunksToSpawn.IsEmpty())
 	{
 		int Counter = 0;
-		while(!ChunksToSpawn.IsEmpty()) { // && Counter < CraftWorldSubsystemConst::SPAWN_CHUNKS_PER_TICK) {
+		while(!ChunksToSpawn.IsEmpty()) {
 			Counter++;
 			FCraftChunkCoords ChunkCoords;
 			ChunksToSpawn.Dequeue(ChunkCoords);
 			TObjectPtr<ACraftWorldChunk> Chunk = SpawnChunk(ChunkCoords);
-
+			
 			ChunksToGenerate.Enqueue(Chunk);
 		}
 	}
